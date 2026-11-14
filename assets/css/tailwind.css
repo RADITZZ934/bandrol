@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply bg-gray-200 text-gray-900 antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Precision Print Rules */
+@media print {
+  @page {
+    margin: 0;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-area {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+  }
+
+  .print-reset-box {
+    width: auto !important;
+    height: auto !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    --tw-ring-shadow: 0 0 #0000 !important;
+  }
+
+  .print-reset-scale {
+    transform: none !important;
+  }
+
+  .bandrol-print-page {
+    box-shadow: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    page-break-after: always;
+    break-after: page;
+    transform: none !important;
+  }
+
+  .bandrol-print-page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+}

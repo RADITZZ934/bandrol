@@ -1,0 +1,18 @@
+# Nuxt build / generated files
+.nuxt
+.output
+dist
+node_modules
+
+# Logs & env
+*.log
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Reference legacy Laravel folder
+webportallaskarbuah---Copy-main/
+
