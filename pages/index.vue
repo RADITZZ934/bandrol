@@ -8,17 +8,24 @@ const store = useBandrolStore()
 
 <template>
   <div class="flex-1 flex flex-col min-w-0 min-h-0 relative print-area">
-    <!-- Center Canvas Workspace -->
+    <!-- Center Canvas Workspace (Animated Active Page) -->
     <div
       class="flex-1 overflow-auto px-6 py-6 flex items-center justify-center print-area"
     >
-      <template v-for="(page, index) in store.pages" :key="page.id">
+      <Transition name="page-switch" mode="out-in">
+        <div :key="store.activePage.id" class="relative">
+          <BandrolPage
+            :page="store.activePage"
+            :index="store.activePageIndex"
+          />
+        </div>
+      </Transition>
+
+      <!-- Inactive Pages (Off-screen for PDF Export & Print) -->
+      <template v-for="(page, index) in store.pages" :key="`offscreen-${page.id}`">
         <div
-          :class="
-            index === store.activePageIndex
-              ? 'relative'
-              : 'fixed -left-[99999px] top-0 pointer-events-none print:static print:left-auto'
-          "
+          v-if="index !== store.activePageIndex"
+          class="fixed -left-[99999px] top-0 pointer-events-none print:static print:left-auto"
         >
           <BandrolPage :page="page" :index="index" />
         </div>

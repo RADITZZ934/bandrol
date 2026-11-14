@@ -1,50 +1,40 @@
-import csvRaw from '~/api/hardcoded/data_produk.csv?raw'
+import { ref } from 'vue'
 import type { ProductItem } from '~/types'
 
-function parseProductCsv(raw: string): ProductItem[] {
-  const lines = raw.split(/\r?\n/)
-  const items: ProductItem[] = []
+export const productCatalog = ref<ProductItem[]>([])
+let loadPromise: Promise<void> | null = null
 
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim()
-    if (!line) continue
+export async function ensureProductsLoaded(): Promise<void> {
+  if (productCatalog.value.length > 0) return
+  if (loadPromise) return loadPromise
 
-    const commaIndex = line.indexOf(',')
-    if (commaIndex === -1) continue
+  loadPromise = $fetch<ProductItem[]>('/api/products')
+    .then((items) => {
+      productCatalog.value = items
+    })
+    .catch((err) => {
+      console.error('Failed to load product catalog:', err)
+    })
+    .finally(() => {
+      loadPromise = null
+    })
 
-    const rawCode = line.slice(0, commaIndex).trim().replace(/^"|"$/g, '')
-    const rawName = line.slice(commaIndex + 1).trim().replace(/^"|"$/g, '')
-
-    // Skip header row
-    if (
-      i === 0 &&
-      rawCode.toLowerCase().includes('kode') &&
-      rawName.toLowerCase().includes('nama')
-    ) {
-      continue
-    }
-
-    if (rawName) {
-      items.push({ code: rawCode, name: rawName })
-    }
-  }
-
-  return items
+  return loadPromise
 }
-
-export const PRODUCT_CATALOG: ProductItem[] = parseProductCsv(csvRaw)
 
 export function searchProducts(query: string, limit = 15): ProductItem[] {
   const q = query.trim().toUpperCase()
   if (!q) return []
 
   const results: ProductItem[] = []
-  for (const item of PRODUCT_CATALOG) {
-    if (item.name.toUpperCase().includes(q) || item.code.toUpperCase().includes(q)) {
+  for (const item of productCatalog.value) {
+    if (
+      item.name.toUpperCase().includes(q) ||
+      item.code.toUpperCase().includes(q)
+    ) {
       results.push(item)
       if (results.length >= limit) break
     }
   }
   return results
 }
-

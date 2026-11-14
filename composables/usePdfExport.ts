@@ -28,10 +28,10 @@ export function usePdfExport() {
 
       for (let i = 0; i < pageElements.length; i++) {
         const el = pageElements[i]
-        const pageData = store.pages[i]
-        const preset = getPresetById(pageData?.sizeId ?? 'f4-landscape')
-        const orientation =
-          preset.widthMm >= preset.heightMm ? 'landscape' : 'portrait'
+        const fallbackPreset = getPresetById(store.pages[i]?.sizeId ?? 'f4-landscape')
+        const widthMm = Number(el.dataset.widthMm) || fallbackPreset.widthMm
+        const heightMm = Number(el.dataset.heightMm) || fallbackPreset.heightMm
+        const orientation = widthMm >= heightMm ? 'landscape' : 'portrait'
 
         const canvas = await html2canvas(el, {
           scale: 2,
@@ -46,10 +46,10 @@ export function usePdfExport() {
           pdf = new jsPDF({
             orientation,
             unit: 'mm',
-            format: [preset.widthMm, preset.heightMm],
+            format: [widthMm, heightMm],
           })
         } else {
-          pdf.addPage([preset.widthMm, preset.heightMm], orientation)
+          pdf.addPage([widthMm, heightMm], orientation)
         }
 
         pdf.addImage(
@@ -57,8 +57,8 @@ export function usePdfExport() {
           'PNG',
           0,
           0,
-          preset.widthMm,
-          preset.heightMm,
+          widthMm,
+          heightMm,
           undefined,
           'FAST'
         )

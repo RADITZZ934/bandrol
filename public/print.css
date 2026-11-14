@@ -1,0 +1,2816 @@
+#bazaarImage {
+    width: 100px;
+}
+
+@page {
+    size: 210mm 330mm;
+    margin: 0;
+}
+.bandrol-card {
+    width: 330mm;
+    height: 210mm;
+    border: 1px solid black;
+    margin-bottom: 5px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.bandrol-card h1 {
+    font-size: 60px;
+}
+.bandrol-card .price {
+    font-size: 100px;
+}
+/* .bandrol-card .store-name {
+    font-size: 40px;
+} */
+.bandrol-card .container {
+    height: 100%;
+}
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .bandrol-card,
+    .bandrol-card * {
+        visibility: visible;
+    }
+    .bandrol-card {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+
+.bandrol-card2 {
+    width: 210mm;
+    height: 165mm;
+    border: 1px solid black;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.price_harga {
+    font-size: 37px;
+}
+
+.bandrol_f42 {
+    width: 210mm;
+    height: 165mm;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card-top .store_name_f42 {
+    font-size: 40px;
+}
+
+.master-price {
+    font-size: 100px;
+}
+
+.lbmb1f4l .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.lbmb1f4l .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 5mm solid #000000;
+}
+
+.lbmb1f4l .bandrol-border4 {
+    border-bottom: 5mm solid #1100ff;
+    margin-left: 10mm;
+    margin-right: 10mm;
+    margin-bottom: 0mm;
+}
+
+.lbmb1f4l .bandrol-nama {
+    font-size: 22mm;
+    font-weight: bold;
+    color: #ff0000;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+}
+
+.lbmb1f4l .bandrol-toko {
+    color: #00268f;
+    line-height: 0.8;
+
+    width: 100%;
+}
+
+.lbmb1f4l .text-container1 {
+    width: auto;
+    height: 50mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    letter-spacing: 0;
+    line-height: 1;
+}
+
+.lbmb1f4l .resizable-text1 {
+    font-family: "Anton", serif;
+    font-weight: 400;
+    color: #000000;
+    font-size: 100px;
+    transition: font-size 0.2s;
+    width: auto;
+    box-sizing: border-box;
+}
+
+.lbmb1f4l .text-container2 {
+    width: auto;
+    height: 106mm;
+    color: #00268f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    margin-top: 0%;
+    margin-right: 10mm;
+}
+
+.lbmb1f4l .bandrol-rp {
+    width: 30mm;
+    font-size: 10mm;
+    text-align: center;
+    align-items: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    display: inline-block;
+}
+.lbmb1f4l .logo {
+    width: 30mm;
+    font-size: 10mm;
+    text-align: center;
+    align-items: center;
+    line-height: 0.5;
+    display: inline-block;
+}
+
+.lbmb1f4l .resizable-text2 {
+    font-size: 70mm;
+    line-height: 0.8;
+    transition: font-size 0.2s;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    margin-left: 5mm;
+}
+
+.lbmb1f4l .text-container3 {
+    width: auto;
+    height: 40mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    background-color: #0004ff;
+}
+
+.lbmb1f4l .harga-uom {
+    font-size: 10mm;
+    font-weight: normal;
+}
+
+.lbmb1f4l .bandrol-member {
+    color: #ffffff;
+    font-size: 25mm;
+    transition: font-size 0.2s;
+    box-sizing: border-box;
+}
+
+.lbmb1f4l .resizable-text3 {
+    background-color: #eeff00;
+    height: 40mm;
+    color: #ff0000;
+    font-size: 30mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    transition: font-size 0.2s;
+    justify-content: center;
+    line-height: 1.6;
+    margin-left: 10mm;
+}
+
+.lbb1f4l .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.lbb1f4l .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 10mm solid #fef213;
+    border-radius: 20mm;
+    box-sizing: border-box;
+}
+
+.lbb1f4l .bandrol-border2 {
+    margin: 1mm;
+    border: 10mm solid #00ff0d;
+    width: auto;
+    border-radius: 9mm;
+    box-sizing: border-box;
+}
+
+.lbb1f4l .bandrol-border3 {
+    margin: 1mm;
+    border: 10mm solid #ff0000;
+    width: auto;
+    border-radius: 8mm;
+    box-sizing: border-box;
+}
+
+.lbb1f4l .bandrol-border4 {
+    border-bottom: 3mm solid #000000;
+    box-sizing: border-box;
+}
+
+.lbb1f4l .bandrol-nama {
+    font-weight: bold;
+    color: #ff0000;
+    -webkit-text-stroke-width: 2px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+}
+
+.lbb1f4l .bandrol-rp {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.lbb1f4l .bandrol-uom {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.lbb1f4l .bandrol-toko {
+    color: #00268f;
+    box-sizing: border-box;
+}
+
+.lbb1f4l .text-container1 {
+    width: auto;
+    min-height: 40mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.lbb1f4l .resizable-text1 {
+    text-align: center;
+    color: #ff0000;
+    font-size: 20mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+    width: 100%;
+    max-width: 100%;
+    max-height: 53mm;
+    box-sizing: border-box;
+    line-height: 1.3;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.lbb1f4l .text-container2 {
+    width: auto;
+    height: 80mm;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+.lbb1f4l .resizable-text2 {
+    font-size: 50mm;
+    transition: font-size 0.2s;
+    font-weight: 400;
+    width: auto;
+    line-height: 0.8;
+    box-sizing: border-box;
+}
+
+.lbb1f4l .text-container3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 23mm;
+    overflow: visible;
+    letter-spacing: 0;
+    box-sizing: border-box;
+}
+
+.lbb1f4l .logo.left,
+.lbb1f4l .logo.right {
+    width: 40mm;
+    height: 40mm;
+    margin-top: 20mm;
+}
+
+.lbb1f4l .resizable-text3 {
+    text-align: center;
+    font-size: 15mm;
+    color: rgb(14, 0, 214);
+    transition: font-size 0.2s;
+    box-sizing: border-box;
+    line-height: 0.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+.bzb1f4l .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.bzb1f4l .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 15mm solid #ff0000;
+    border-radius: 20mm;
+    box-sizing: border-box;
+}
+
+/* .bzb1f4l .bandrol-border2 {
+    margin: 1mm;
+    border: 1mm solid #ffffff00;
+    width: auto;
+    border-radius: 9mm;
+    box-sizing: border-box;
+} */
+
+.bzb1f4l .bandrol-border3 {
+    margin: 5mm;
+    border: 15mm solid #06aa00;
+    width: auto;
+    border-radius: 8mm;
+    box-sizing: border-box;
+}
+
+.bzb1f4l .bandrol-border4 {
+    border-bottom: 3mm solid #000000;
+    box-sizing: border-box;
+}
+
+.bzb1f4l .bandrol-nama {
+    font-weight: bold;
+    color: #ff0000;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+}
+
+.bzb1f4l .bandrol-rp {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.bzb1f4l .bandrol-uom {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.bzb1f4l .bandrol-toko {
+    color: #00268f;
+    box-sizing: border-box;
+}
+
+.bzb1f4l .text-container1 {
+    width: auto;
+    min-height: 40mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.bzb1f4l .resizable-text1 {
+    text-align: center;
+    color: #ff0000;
+    font-size: 20mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+    width: 100%;
+    max-width: 100%;
+    max-height: 53mm;
+    box-sizing: border-box;
+    line-height: 1.3;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.bzb1f4l .text-container2 {
+    width: auto;
+    height: 80mm;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+.bzb1f4l .resizable-text2 {
+    font-size: 50mm;
+    transition: font-size 0.2s;
+    font-weight: 400;
+    width: auto;
+    line-height: 0.8;
+    box-sizing: border-box;
+}
+
+.bzb1f4l .text-container3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 23mm;
+    overflow: visible;
+    letter-spacing: 0;
+
+    box-sizing: border-box;
+}
+
+.bzb1f4l .logo.left,
+.bzb1f4l .logo.right {
+    width: 30mm;
+    height: 30mm;
+    margin: 5mm;
+}
+
+.bzb1f4l .resizable-text3 {
+    text-align: center;
+    font-size: 15mm;
+    color: rgb(14, 0, 214);
+    transition: font-size 0.2s;
+    box-sizing: border-box;
+    line-height: 0.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+.lbb2f4p .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.lbb2f4p .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 8mm solid #fef213;
+    border-radius: 20mm;
+    box-sizing: border-box;
+}
+
+.lbb2f4p .bandrol-border2 {
+    margin: 2mm;
+    border: 8mm solid #00ff0d;
+    width: auto;
+    border-radius: 12mm;
+    box-sizing: border-box;
+}
+
+.lbb2f4p .bandrol-border3 {
+    margin: 2mm;
+    border: 8mm solid #ff0000;
+    width: auto;
+    border-radius: 12mm;
+    box-sizing: border-box;
+}
+
+.lbb2f4p .bandrol-border4 {
+    border-bottom: 5mm solid #000000;
+    box-sizing: border-box;
+}
+
+.lbb2f4p .bandrol-rp {
+    font-size: 16mm;
+    color: #000000;
+}
+
+.lbb2f4p .bandrol-uom {
+    font-size: 16mm;
+    color: #000000;
+}
+
+.lbb2f4p .text-container1 {
+    width: auto;
+    min-height: 47mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 16mm;
+}
+
+.lbb2f4p .resizable-text1 {
+    text-align: center;
+    color: #ff0000;
+    font-size: 20mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    -webkit-text-stroke-width: 2px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+    width: 100%;
+    max-width: 100%;
+    max-height: 83mm;
+    box-sizing: border-box;
+    line-height: 1.3;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.lbb2f4p .text-container2 {
+    width: auto;
+    height: 107mm;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    box-sizing: border-box;
+    padding: 0 16mm;
+}
+
+.lbb2f4p .resizable-text2 {
+    font-size: 63mm;
+    transition: font-size 0.2s;
+    font-weight: 400;
+    width: auto;
+    line-height: 1.5;
+    box-sizing: border-box;
+}
+
+.lbb2f4p .text-container3 {
+    align-items: center;
+    display: flex;
+    height: 47mm;
+    overflow: visible;
+
+    width: auto;
+    letter-spacing: 0;
+    box-sizing: border-box;
+    justify-content: center;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.lbb2f4p .logo.left,
+.lbb2f4p .logo.right {
+    width: 43mm;
+    height: 43mm;
+    margin-top: 29mm;
+}
+
+.lbb2f4p .resizable-text3 {
+    text-align: center;
+    font-size: 13mm;
+    color: rgb(14, 0, 214);
+    transition: font-size 0.2s;
+    box-sizing: border-box;
+    line-height: 0.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+.lbmb2f4p .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.lbmb2f4p .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 5mm solid #000000;
+}
+
+.lbmb2f4p .bandrol-border4 {
+    border-bottom: 5mm solid #1100ff;
+    margin-left: 10mm;
+    margin-right: 10mm;
+    margin-bottom: 0mm;
+}
+
+.lbmb2f4p .bandrol-nama {
+    font-size: 22mm;
+    font-weight: bold;
+    color: #ff0000;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+}
+
+.lbmb2f4p .bandrol-toko {
+    color: #00268f;
+    line-height: 0.8;
+
+    width: 100%;
+}
+
+.lbmb2f4p .text-container1 {
+    width: auto;
+    height: 70mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    letter-spacing: 0;
+    line-height: 1;
+}
+
+.lbmb2f4p .resizable-text1 {
+    font-family: "Anton", serif;
+    font-weight: 400;
+    color: #000000;
+    font-size: 100px;
+    transition: font-size 0.2s;
+    width: auto;
+    box-sizing: border-box;
+}
+
+.lbmb2f4p .text-container2 {
+    width: auto;
+    height: 136mm;
+    color: #00268f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    margin-top: 0%;
+    margin-right: 10mm;
+}
+
+.lbmb2f4p .bandrol-rp {
+    width: 30mm;
+    font-size: 10mm;
+    text-align: center;
+    align-items: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    display: inline-block;
+}
+.lbmb2f4p .logo {
+    width: 30mm;
+    font-size: 10mm;
+    text-align: center;
+    align-items: center;
+    line-height: 0.5;
+    display: inline-block;
+}
+
+.lbmb2f4p .resizable-text2 {
+    font-size: 70mm;
+    line-height: 0.8;
+    transition: font-size 0.2s;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    margin-left: 5mm;
+}
+
+.lbmb2f4p .text-container3 {
+    width: auto;
+    height: 40mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    background-color: #0004ff;
+}
+
+.lbmb2f4p .harga-uom {
+    font-size: 10mm;
+    font-weight: normal;
+}
+
+.lbmb2f4p .bandrol-member {
+    color: #ffffff;
+    font-size: 25mm;
+    transition: font-size 0.2s;
+    box-sizing: border-box;
+}
+
+.lbmb2f4p .resizable-text3 {
+    background-color: #eeff00;
+    height: 40mm;
+    color: #ff0000;
+    font-size: 30mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    transition: font-size 0.2s;
+    justify-content: center;
+    line-height: 1.6;
+    margin-left: 10mm;
+}
+
+.bzb2f4p .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.bzb2f4p .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 12mm solid #ff0000;
+    border-radius: 20mm;
+    box-sizing: border-box;
+}
+
+.bzb2f4p .bandrol-border3 {
+    margin: 4mm;
+    border: 12mm solid #00c030;
+    width: auto;
+    border-radius: 12mm;
+    box-sizing: border-box;
+}
+
+.bzb2f4p .bandrol-border4 {
+    border-bottom: 5mm solid #000000;
+    box-sizing: border-box;
+}
+
+.bzb2f4p .bandrol-rp {
+    font-size: 16mm;
+    color: #000000;
+}
+
+.bzb2f4p .bandrol-uom {
+    font-size: 16mm;
+    color: #000000;
+}
+
+.bzb2f4p .text-container1 {
+    width: auto;
+    min-height: 47mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 16mm;
+}
+
+.bzb2f4p .resizable-text1 {
+    text-align: center;
+    color: #ff0000;
+    font-size: 20mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    -webkit-text-stroke-width: 2px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+    width: 100%;
+    max-width: 100%;
+    max-height: 83mm;
+    box-sizing: border-box;
+    line-height: 1.3;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.bzb2f4p .text-container2 {
+    width: auto;
+    height: 107mm;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    box-sizing: border-box;
+    padding: 0 16mm;
+}
+
+.bzb2f4p .resizable-text2 {
+    font-size: 63mm;
+    transition: font-size 0.2s;
+    font-weight: 400;
+    width: auto;
+    line-height: 1.5;
+    box-sizing: border-box;
+}
+
+.bzb2f4p .text-container3 {
+    align-items: center;
+    display: flex;
+    height: 47mm;
+    overflow: visible;
+    width: auto;
+    letter-spacing: 0;
+    box-sizing: border-box;
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+}
+
+.bzb2f4p .logo.left,
+.bzb2f4p .logo.right {
+    width: 43mm;
+    height: 43mm;
+    margin-top: 29mm;
+}
+
+.bzb2f4p .resizable-text3 {
+    text-align: center;
+    font-size: 13mm;
+    color: rgb(14, 0, 214);
+    transition: font-size 0.2s;
+    box-sizing: border-box;
+    line-height: 0.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+.lbb4f4p .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.lbb4f4p .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 3mm solid #fef213;
+    border-radius: 6mm;
+    box-sizing: border-box;
+}
+
+.lbb4f4p .bandrol-border2 {
+    margin: 1mm;
+    border: 3mm solid #00ff0d;
+    width: auto;
+    border-radius: 5mm;
+    box-sizing: border-box;
+}
+
+.lbb4f4p .bandrol-border3 {
+    margin: 1mm;
+    border: 3mm solid #ff0000;
+    width: auto;
+    border-radius: 4mm;
+    box-sizing: border-box;
+}
+
+.lbb4f4p .bandrol-border4 {
+    border-bottom: 3mm solid #000000;
+    box-sizing: border-box;
+}
+
+.lbb4f4p .bandrol-nama {
+    font-weight: bold;
+    color: #ff0000;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+}
+
+.lbb4f4p .bandrol-rp {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.lbb4f4p .bandrol-uom {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.lbb4f4p .bandrol-toko {
+    color: #00268f;
+    box-sizing: border-box;
+}
+
+.lbb4f4p .text-container1 {
+    width: auto;
+    min-height: 30mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.lbb4f4p .resizable-text1 {
+    text-align: center;
+    color: #ff0000;
+    font-size: 20mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+    width: 100%;
+    max-width: 100%;
+    max-height: 53mm;
+    box-sizing: border-box;
+    line-height: 1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.lbb4f4p .text-container2 {
+    width: auto;
+    height: 53mm;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-family: "Anton", serif;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+.lbb4f4p .resizable-text2 {
+    font-size: 50mm;
+    transition: font-size 0.2s;
+    font-weight: 400;
+    width: auto;
+    line-height: 0.8;
+    box-sizing: border-box;
+}
+
+.lbb4f4p .text-container3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 23mm;
+    overflow: visible;
+    letter-spacing: 0;
+
+    box-sizing: border-box;
+}
+
+.lbb4f4p .logo.left,
+.lbb4f4p .logo.right {
+    width: 40mm;
+    height: 40mm;
+    margin-top: 20mm;
+}
+
+.lbb4f4p .resizable-text3 {
+    text-align: center;
+    font-size: 15mm;
+    color: rgb(14, 0, 214);
+    transition: font-size 0.2s;
+    box-sizing: border-box;
+    line-height: 0.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+.bzb4f4p .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.bzb4f4p .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 5mm solid #ff0000;
+    border-radius: 6mm;
+    box-sizing: border-box;
+}
+
+.bzb4f4p .bandrol-border3 {
+    margin: 1mm;
+    border: 5mm solid #00cf0a;
+    width: auto;
+    border-radius: 4mm;
+    box-sizing: border-box;
+}
+
+.bzb4f4p .bandrol-border4 {
+    border-bottom: 3mm solid #000000;
+    box-sizing: border-box;
+}
+
+.bzb4f4p .bandrol-nama {
+    font-weight: bold;
+    color: #ff0000;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+}
+
+.bzb4f4p .bandrol-rp {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.bzb4f4p .bandrol-uom {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.bzb4f4p .bandrol-toko {
+    color: #00268f;
+    box-sizing: border-box;
+}
+
+.bzb4f4p .text-container1 {
+    width: auto;
+    min-height: 30mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.bzb4f4p .resizable-text1 {
+    text-align: center;
+    color: #ff0000;
+    font-size: 20mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+    width: 100%;
+    max-width: 100%;
+    max-height: 53mm;
+    box-sizing: border-box;
+    line-height: 1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.bzb4f4p .text-container2 {
+    width: auto;
+    height: 53mm;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-family: "Anton", serif;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+.bzb4f4p .resizable-text2 {
+    font-size: 50mm;
+    transition: font-size 0.2s;
+    font-weight: 400;
+    width: auto;
+    line-height: 0.8;
+    box-sizing: border-box;
+}
+
+.bzb4f4p .text-container3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 23mm;
+    overflow: visible;
+    letter-spacing: 0;
+
+    box-sizing: border-box;
+}
+
+.bzb4f4p .logo.left,
+.bzb4f4p .logo.right {
+    width: 40mm;
+    height: 40mm;
+    margin-top: 20mm;
+}
+
+.bzb4f4p .resizable-text3 {
+    text-align: center;
+    font-size: 15mm;
+    color: rgb(14, 0, 214);
+    transition: font-size 0.2s;
+    box-sizing: border-box;
+    line-height: 0.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+.lbb25l .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+.lbb25l .bandrol-border0 {
+    width: 100%;
+    height: 100%;
+    border: 1mm solid rgba(0, 0, 0, 0);
+
+    box-sizing: border-box;
+}
+
+.lbb25l .bandrol-border1 {
+    height: 20mm;
+    background-color: #ff9100;
+
+    box-sizing: border-box;
+}
+
+.lbb25l .bandrol-border2 {
+    box-sizing: border-box;
+}
+
+.lbb25l .bandrol-border3 {
+    border-bottom: 3mm solid #ff0000;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.lbb25l .bandrol-border4 {
+    border-bottom: 3mm solid #00d30b;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.lbb25l .bandrol-nama {
+    font-weight: bold;
+    color: #ff0000;
+
+    box-sizing: border-box;
+}
+
+.lbb25l .bandrol-rp {
+    color: #000000;
+    box-sizing: border-box;
+    font-size: 15mm;
+    vertical-align: top;
+    justify-content: flex-start;
+}
+
+.lbb25l .bandrol-harga {
+    color: #000000;
+    box-sizing: border-box;
+}
+
+.lbb25l .bandrol-uom {
+    color: #000000;
+    box-sizing: border-box;
+}
+
+.lbb25l .bandrol-toko {
+    color: #00268f;
+    box-sizing: border-box;
+}
+
+.lbb25l .text-container1 {
+    width: auto;
+
+    height: 32mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.lbb25l .resizable-text1 {
+    font-size: 15mm;
+    color: #000000;
+    font-weight: bold;
+    text-align: left;
+    line-height: 0.8;
+    margin-right: auto;
+    margin-left: 3 mm;
+    box-sizing: border-box;
+}
+
+.lbb25l .text-container2 {
+    width: auto;
+    height: 80mm;
+    display: flex;
+    align-items: baseline;
+    justify-content: right;
+    overflow: hidden;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.lbb25l .resizable-text2 {
+    text-align: right;
+    font-size: 60mm;
+    transition: font-size 0.2s;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    width: auto;
+
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: 5mm;
+}
+
+.lbb25l .text-container3 {
+    width: 100%;
+}
+
+.lbb25l .resizable-text3 {
+    color: #000000;
+    font-family: "DM Serif Text", serif;
+    font-size: 5mm;
+    transition: font-size 0.2s;
+    width: auto;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 3mm;
+    right: 3mm;
+}
+
+.lbb25l .resizable-text4 {
+    color: #ffffff;
+    font-family: "DM Serif Text", serif;
+    font-size: 5mm;
+    transition: font-size 0.2s;
+    width: auto;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 2mm;
+    right: 2mm;
+}
+
+/* lbpb1f42 Styles */
+.lbpb1f42 .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.lbpb1f42 .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 3mm solid #fef213;
+    box-sizing: border-box;
+}
+
+.lbpb1f42 .text-container1 {
+    width: auto;
+    height: 40mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+    border: 3mm solid #fef213;
+    margin: 2mm;
+}
+
+.lbpb1f42 .resizable-text1 {
+    text-align: center;
+    color: #ff0000;
+    font-size: 20mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    -webkit-text-stroke-width: 2px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.3;
+    margin: 0;
+    display: inline-block;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.lbpb1f42 .text-container2 {
+    margin: 2mm;
+    border: 3mm solid #00a608;
+    width: auto;
+    height: 167mm;
+    color: #ff0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-size: 20mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+.lbpb1f42 .promo {
+    font-size: 25mm;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    line-height: 1;
+    color: #ffa600;
+}
+
+.lbpb1f42 .resizable-text2 {
+    font-size: 70mm;
+    transition: font-size 0.2s;
+    color: red;
+    font-family: "Anton", serif;
+    font-weight: 400;
+
+    box-sizing: border-box;
+}
+
+.lbpb1f42 .text-container3 {
+    margin-left: 2mm;
+    margin-right: 2mm;
+    width: auto;
+    height: 40mm;
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 3mm solid #fef213;
+}
+
+.lbpb1f42 .resizable-text3 {
+    color: red;
+    font-size: 15mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+/* bzpb1f42 Styles */
+.bzpb1f42 .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.bzpb1f42 .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 3mm solid #ff0000;
+    box-sizing: border-box;
+}
+
+.bzpb1f42 .text-container1 {
+    width: auto;
+    height: 40mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+    border: 3mm solid rgb(255, 0, 0);
+    margin: 2mm;
+}
+
+.bzpb1f42 .resizable-text1 {
+    text-align: center;
+    color: green;
+    font-size: 20mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.3;
+    margin: 0;
+    display: inline-block;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.bzpb1f42 .text-container2 {
+    margin: 2mm;
+    border: 3mm solid #009708;
+    width: auto;
+    height: 167mm;
+    color: #ff0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-size: 20mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+.bzpb1f42 .promo {
+    font-size: 25mm;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    line-height: 1;
+    color: #ffa600;
+}
+
+.bzpb1f42 .resizable-text2 {
+    font-size: 70mm;
+    transition: font-size 0.2s;
+    color: red;
+    font-family: "Anton", serif;
+    font-weight: 400;
+
+    box-sizing: border-box;
+}
+
+.bzpb1f42 .text-container3 {
+    margin: 2mm;
+    width: auto;
+    height: 40mm;
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 3mm solid #ff0000;
+}
+
+.bzpb1f42 .resizable-text3 {
+    color: green;
+    font-size: 15mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+.lbb18l .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.lbb18l .bandrol-border0 {
+    width: 100%;
+    height: 100%;
+    border: 1mm solid rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+}
+
+.lbb18l .bandrol-border1 {
+    height: 13mm; /* Reduced from 20mm */
+    background-color: #ff9100;
+}
+
+.lbb18l .bandrol-border2 {
+    box-sizing: border-box;
+}
+
+.lbb18l .bandrol-border3 {
+    border-bottom: 1.5mm solid #ff0000; /* Reduced from 3mm */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.lbb18l .bandrol-border4 {
+    border-bottom: 1.5mm solid #00d30b; /* Reduced from 3mm */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.lbb18l .bandrol-nama {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.lbb18l .bandrol-rp {
+    font-size: 9mm; /* Reduced from 15mm */
+    color: #000000;
+    vertical-align: top;
+    justify-content: flex-start;
+}
+
+.lbb18l .bandrol-harga {
+    color: #000000;
+    box-sizing: border-box;
+}
+
+.lbb18l .bandrol-uom {
+    color: #000000;
+    box-sizing: border-box;
+}
+
+.lbb18l .bandrol-toko {
+    color: #00268f;
+    box-sizing: border-box;
+}
+
+.lbb18l .text-container1 {
+    width: auto;
+    height: 20mm; /* Reduced from 32mm */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.lbb18l .resizable-text1 {
+    font-size: 9mm; /* Reduced from 15mm */
+    color: #000000;
+    text-align: left;
+    color: #000000;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    line-height: 1.2; /* Adjusted for readability */
+    margin-right: auto;
+    margin-left: 2mm; /* Reduced from 3mm */
+    box-sizing: border-box;
+}
+
+.lbb18l .text-container2 {
+    width: auto;
+    height: 50mm; /* Reduced from 80mm */
+    display: flex;
+    align-items: baseline;
+    justify-content: right;
+    overflow: hidden;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.lbb18l .resizable-text2 {
+    text-align: right;
+    font-size: 38mm; /* Reduced from 60mm */
+    transition: font-size 0.2s;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    width: auto;
+    color: #000000;
+    margin-left: auto;
+    margin-right: 3mm; /* Reduced from 5mm */
+}
+
+.lbb18l .text-container3 {
+    width: 100%;
+}
+
+.lbb18l .resizable-text3 {
+    color: #000000;
+    font-family: "DM Serif Text", serif;
+    font-size: 4mm; /* Reduced from 5mm */
+    transition: font-size 0.2s;
+    position: absolute;
+    bottom: 2mm; /* Reduced from 3mm */
+    right: 2mm; /* Reduced from 3mm */
+}
+
+.lbb18l .resizable-text4 {
+    color: #ffffff;
+    font-family: "DM Serif Text", serif;
+    font-size: 4mm; /* Reduced from 5mm */
+    transition: font-size 0.2s;
+    position: absolute;
+    bottom: 1mm; /* Reduced from 2mm */
+    right: 1mm; /* Reduced from 2mm */
+}
+.lbb18l .uom {
+    font-size: 38mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+/* lbpb1f41 Styles */
+.lbpb1f41 .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+.lbpb1f41 .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 3mm solid #fef213;
+    box-sizing: border-box;
+}
+
+.lbpb1f41 .text-container1 {
+    width: auto;
+    height: 34mm; /* Reduced from 40mm */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+    border: 3mm solid #fef213;
+    margin: 2mm;
+}
+
+.lbpb1f41 .resizable-text1 {
+    text-align: center;
+    color: #ff0000;
+    font-size: 17mm; /* Reduced from 20mm */
+    font-family: "Anton", serif;
+    font-weight: 400;
+    -webkit-text-stroke-width: 1.5px; /* Reduced stroke width */
+    -webkit-text-stroke-color: black;
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.2; /* Adjusted line height */
+    margin: 0;
+    display: inline-block;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.lbpb1f41 .text-container2 {
+    margin: 2mm;
+    border: 3mm solid #00a608;
+    width: auto;
+    height: 129mm; /* Reduced from 167mm */
+    color: #ff0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-size: 20mm; /* Scaled down */
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+.lbpb1f41 .promo {
+    font-size: 21mm; /* Reduced from 25mm */
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    line-height: 0.7;
+    color: #ffa600;
+    margin-bottom: 5mm; /* Added spacing */
+}
+
+.lbpb1f41 .resizable-text2 {
+    font-size: 59mm; /* Reduced from 70mm */
+    transition: font-size 0.2s;
+    color: red;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    line-height: 1.1;
+    box-sizing: border-box;
+}
+
+.lbpb1f41 .text-container3 {
+    margin-left: 2mm;
+    margin-right: 2mm;
+    width: auto;
+    height: 34mm; /* Reduced from 40mm */
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 3mm solid #fef213;
+    margin-bottom: 2mm;
+}
+
+.lbpb1f41 .resizable-text3 {
+    color: red;
+    font-size: 13mm; /* Reduced from 15mm */
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+/* bzpb1f41 Styles */
+.bzpb1f41 .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+.bzpb1f41 .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 3mm solid #fe1313;
+    box-sizing: border-box;
+}
+
+.bzpb1f41 .text-container1 {
+    width: auto;
+    height: 34mm; /* Reduced from 40mm */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+    border: 3mm solid #ff0000;
+    margin: 2mm;
+}
+
+.bzpb1f41 .resizable-text1 {
+    text-align: center;
+    color: #23ad00;
+    font-size: 17mm; /* Reduced from 20mm */
+    font-family: "Anton", serif;
+    font-weight: 400;
+    -webkit-text-stroke-width: 1.5px; /* Reduced stroke width */
+    -webkit-text-stroke-color: black;
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.2; /* Adjusted line height */
+    margin: 0;
+    display: inline-block;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.bzpb1f41 .text-container2 {
+    margin: 2mm;
+    border: 3mm solid #00a608;
+    width: auto;
+    height: 129mm; /* Reduced from 167mm */
+    color: #ff0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-size: 20mm; /* Scaled down */
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+.bzpb1f41 .promo {
+    font-size: 21mm; /* Reduced from 25mm */
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    line-height: 0.7;
+    color: #ffa600;
+    margin-bottom: 5mm; /* Added spacing */
+}
+
+.bzpb1f41 .resizable-text2 {
+    font-size: 59mm; /* Reduced from 70mm */
+    transition: font-size 0.2s;
+    color: red;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    line-height: 1.1;
+    box-sizing: border-box;
+}
+
+.bzpb1f41 .text-container3 {
+    margin-left: 2mm;
+    margin-right: 2mm;
+    width: auto;
+    height: 34mm; /* Reduced from 40mm */
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 3mm solid #ff0000;
+    margin-bottom: 2mm;
+}
+
+.bzpb1f41 .resizable-text3 {
+    color: #00a608;
+    font-size: 13mm; /* Reduced from 15mm */
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+.lbb2f4l .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.lbb2f4l .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 3mm solid #fef213;
+    border-radius: 6mm;
+    box-sizing: border-box;
+}
+
+.lbb2f4l .bandrol-border2 {
+    margin: 1mm;
+    border: 3mm solid #00ff0d;
+    width: auto;
+    border-radius: 5mm;
+    box-sizing: border-box;
+}
+
+.lbb2f4l .bandrol-border3 {
+    margin: 1mm;
+    border: 3mm solid #ff0000;
+    width: auto;
+    border-radius: 4mm;
+    box-sizing: border-box;
+}
+
+.lbb2f4l .bandrol-border4 {
+    border-bottom: 3mm solid #000000;
+    box-sizing: border-box;
+}
+
+.lbb2f4l .bandrol-nama {
+    font-weight: bold;
+    color: #ff0000;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+}
+
+.lbb2f4l .bandrol-rp {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.lbb2f4l .bandrol-uom {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.lbb2f4l .bandrol-toko {
+    color: #00268f;
+    box-sizing: border-box;
+}
+
+.lbb2f4l .text-container1 {
+    width: auto;
+    min-height: 20mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.lbb2f4l .resizable-text1 {
+    text-align: center;
+    color: #ff0000;
+    font-size: 15mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+    width: 100%;
+    max-width: 100%;
+    max-height: 53mm;
+    box-sizing: border-box;
+    line-height: 1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.lbb2f4l .text-container2 {
+    width: auto;
+    height: 38mm;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-family: "Anton", serif;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+.lbb2f4l .resizable-text2 {
+    font-size: 35mm;
+    transition: font-size 0.2s;
+    font-weight: 400;
+    width: auto;
+    line-height: 0.8;
+    box-sizing: border-box;
+}
+
+.lbb2f4l .text-container3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 23mm;
+    overflow: visible;
+    letter-spacing: 0;
+
+    box-sizing: border-box;
+}
+
+.lbb2f4l .logo.left,
+.lbb2f4l .logo.right {
+    width: 40mm;
+    height: 40mm;
+    margin-top: 20mm;
+}
+
+.lbb2f4l .resizable-text3 {
+    text-align: center;
+    font-size: 15mm;
+    color: rgb(14, 0, 214);
+    transition: font-size 0.2s;
+    box-sizing: border-box;
+    line-height: 0.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+.bzb4f4l .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.bzb4f4l .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 5mm solid #ff0000;
+    border-radius: 6mm;
+    box-sizing: border-box;
+}
+
+.bzb4f4l .bandrol-border3 {
+    margin: 1mm;
+    border: 5mm solid #00cf0a;
+    width: auto;
+    border-radius: 4mm;
+    box-sizing: border-box;
+}
+
+.bzb4f4l .bandrol-border4 {
+    border-bottom: 3mm solid #000000;
+    box-sizing: border-box;
+}
+
+.bzb4f4l .bandrol-nama {
+    font-weight: bold;
+    color: #ff0000;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+}
+
+.bzb4f4l .bandrol-rp {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.bzb4f4l .bandrol-uom {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.bzb4f4l .bandrol-toko {
+    color: #00268f;
+    box-sizing: border-box;
+}
+
+.bzb4f4l .text-container1 {
+    width: auto;
+    min-height: 20mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.bzb4f4l .resizable-text1 {
+    text-align: center;
+    color: #ff0000;
+    font-size: 15mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+    width: 100%;
+    max-width: 100%;
+    max-height: 53mm;
+    box-sizing: border-box;
+    line-height: 1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.bzb4f4l .text-container2 {
+    width: auto;
+    height: 38mm;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-family: "Anton", serif;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+.bzb4f4l .resizable-text2 {
+    font-size: 35mm;
+    transition: font-size 0.2s;
+    font-weight: 400;
+    width: auto;
+    line-height: 0.8;
+    box-sizing: border-box;
+}
+
+.bzb4f4l .text-container3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 23mm;
+    overflow: visible;
+    letter-spacing: 0;
+
+    box-sizing: border-box;
+}
+
+.bzb4f4l .logo.left,
+.bzb4f4l .logo.right {
+    width: 40mm;
+    height: 40mm;
+    margin-top: 17mm;
+}
+
+.bzb4f4l .resizable-text3 {
+    text-align: center;
+    font-size: 15mm;
+    color: rgb(14, 0, 214);
+    transition: font-size 0.2s;
+    box-sizing: border-box;
+    line-height: 0.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+.jrb25l .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+.jrb25l .bandrol-border0 {
+    width: 100%;
+    height: 100%;
+    border: 1mm solid rgba(0, 0, 0, 0);
+
+    box-sizing: border-box;
+}
+
+.jrb25l .bandrol-border1 {
+    height: 20mm;
+    background-color: #ff9100;
+
+    box-sizing: border-box;
+}
+
+.jrb25l .bandrol-border2 {
+    box-sizing: border-box;
+}
+
+.jrb25l .bandrol-border3 {
+    border-bottom: 3mm solid #ff0000;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.jrb25l .bandrol-border4 {
+    border-bottom: 3mm solid #00d30b;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.jrb25l .bandrol-nama {
+    font-weight: bold;
+    color: #ff0000;
+
+    box-sizing: border-box;
+}
+
+
+.jrb25l .bandrol-harga {
+    color: #000000;
+    box-sizing: border-box;
+}
+
+.jrb25l .bandrol-toko {
+    color: #00268f;
+    box-sizing: border-box;
+}
+
+.jrb25l .text-container1 {
+    width: auto;
+
+    height: 32mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.jrb25l .resizable-text1 {
+    font-size: 15mm;
+    color: #000000;
+    font-weight: bold;
+    text-align: left;
+    line-height: 0.8;
+    margin-right: auto;
+    margin-left: 3 mm;
+    box-sizing: border-box;
+}
+
+.jrb25l .text-container2 {
+    width: auto;
+    height: 80mm;
+    display: flex;
+    align-items: baseline;
+    justify-content: right;
+    overflow: hidden;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.jrb25l .resizable-text2 {
+    text-align: right;
+    font-size: 60mm;
+    transition: font-size 0.2s;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    width: auto;
+
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: 5mm;
+}
+
+.jrb25l .bandrol-rp {
+    line-height: 2.5;
+    box-sizing: border-box;
+    font-size: 15mm;
+    font-family: "Anton", serif;
+    vertical-align: top;
+    justify-content: flex-start;
+}
+
+.jrb25l .bandrol-uom {
+   line-height: 2.5;
+    box-sizing: border-box;
+    font-size: 15mm;
+    vertical-align: top;
+    font-family: "Anton", serif;
+}
+
+.jrb25l .text-container3 {
+    width: 100%;
+}
+
+.jrb25l .resizable-text3 {
+    color: #000000;
+    font-family: "DM Serif Text", serif;
+    font-size: 5mm;
+    transition: font-size 0.2s;
+    width: auto;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 3mm;
+    right: 3mm;
+}
+
+.jrb25l .resizable-text4 {
+    color: #ffffff;
+    font-family: "DM Serif Text", serif;
+    font-size: 5mm;
+    transition: font-size 0.2s;
+    width: auto;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 2mm;
+    right: 2mm;
+}
+
+.jrb30l .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+.jrb30l .bandrol-border0 {
+    width: 100%;
+    height: 100%;
+    border: 1mm solid rgba(0, 0, 0, 0);
+
+    box-sizing: border-box;
+}
+
+.jrb30l .bandrol-border1 {
+    height: 20mm;
+    background-color: #ff9100;
+
+    box-sizing: border-box;
+}
+
+.jrb30l .bandrol-border2 {
+    box-sizing: border-box;
+}
+
+.jrb30l .bandrol-border3 {
+    border-bottom: 3mm solid #ff0000;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.jrb30l .bandrol-border4 {
+    border-bottom: 3mm solid #00d30b;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.jrb30l .bandrol-nama {
+    font-weight: bold;
+    color: #ff0000;
+
+    box-sizing: border-box;
+}
+
+
+.jrb30l .bandrol-harga {
+    color: #000000;
+    box-sizing: border-box;
+}
+
+.jrb30l .bandrol-toko {
+    color: #00268f;
+    box-sizing: border-box;
+}
+
+.jrb30l .text-container1 {
+    width: auto;
+    height: 40mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.jrb30l .resizable-text1 {
+    font-size: 15mm;
+    color: #000000;
+    font-weight: bold;
+    text-align: left;
+    line-height: 0.8;
+    margin-right: auto;
+    margin-left: 10 mm;
+    box-sizing: border-box;
+}
+
+.jrb30l .text-container2 {
+    width: auto;
+    height: 120mm;
+    display: flex;
+    align-items: baseline;
+    justify-content: right;
+    overflow: hidden;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.jrb30l .text-containerw2 {
+    width: auto;
+    height: 100mm;
+    display: flex;
+    align-items: baseline;
+    justify-content: right;
+    overflow: hidden;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.jrb30l .resizable-text2 {
+    text-align: right;
+    font-size: 60mm;
+    transition: font-size 0.2s;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    width: auto;
+
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: 5mm;
+}
+
+.jrb30l .bandrol-rp {
+    line-height: 2.5;
+    box-sizing: border-box;
+    font-size: 15mm;
+    font-family: "Anton", serif;
+    vertical-align: top;
+    justify-content: flex-start;
+}
+
+.jrb30l .bandrol-uom {
+   line-height: 2.5;
+    box-sizing: border-box;
+    font-size: 15mm;
+    vertical-align: top;
+    font-family: "Anton", serif;
+}
+
+.jrb30l .text-container3 {
+    width: 100%;
+}
+
+.jrb30l .resizable-text3 {
+    color: #000000;
+    font-family: "DM Serif Text", serif;
+    font-size: 5mm;
+    transition: font-size 0.2s;
+    width: auto;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 3mm;
+    right: 3mm;
+}
+
+.jrb30l .resizable-text4 {
+    color: #ffffff;
+    font-family: "DM Serif Text", serif;
+    font-size: 5mm;
+    transition: font-size 0.2s;
+    width: auto;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 2mm;
+    right: 2mm;
+}
+
+
+.jrb1f4l .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.jrb1f4l .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 15mm solid #000000;
+    border-radius: 20mm;
+    box-sizing: border-box;
+}
+
+/* .jrb1f4l .bandrol-border2 {
+    margin: 1mm;
+    border: 1mm solid #ffffff00;
+    width: auto;
+    border-radius: 9mm;
+    box-sizing: border-box;
+} */
+
+.jrb1f4l .bandrol-border3 {
+    margin: 5mm;
+    border: 15mm solid #ff0000;
+    width: auto;
+    border-radius: 8mm;
+    box-sizing: border-box;
+}
+
+.jrb1f4l .bandrol-border4 {
+    border-bottom: 3mm solid #000000;
+    box-sizing: border-box;
+}
+
+.jrb1f4l .bandrol-nama {
+    font-weight: bold;
+    color: #ff0000;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+}
+
+.jrb1f4l .bandrol-rp {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.jrb1f4l .bandrol-uom {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.jrb1f4l .bandrol-toko {
+    color: #c75a00;
+    box-sizing: border-box;
+}
+
+.jrb1f4l .text-container1 {
+    width: auto;
+    min-height: 40mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.jrb1f4l .resizable-text1 {
+    text-align: center;
+    color: #ff0000;
+    font-size: 20mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+    width: 100%;
+    max-width: 100%;
+    max-height: 53mm;
+    box-sizing: border-box;
+    line-height: 1.3;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.jrb1f4l .text-container2 {
+    width: auto;
+    height: 80mm;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+.jrb1f4l .resizable-text2 {
+    font-size: 50mm;
+    transition: font-size 0.2s;
+    font-weight: 400;
+    width: auto;
+    line-height: 0.8;
+    box-sizing: border-box;
+}
+
+.jrb1f4l .text-container3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 23mm;
+    overflow: visible;
+    letter-spacing: 0;
+
+    box-sizing: border-box;
+}
+
+.jrb1f4l .logo.left,
+.jrb1f4l .logo.right {
+    width: 30mm;
+    height: 30mm;
+    margin: 5mm;
+}
+
+.jrb1f4l .resizable-text3 {
+    text-align: center;
+    font-size: 15mm;
+    color: #c75a00;
+    transition: font-size 0.2s;
+    box-sizing: border-box;
+    line-height: 0.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+
+.jrb4f4p .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.jrb4f4p .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 5mm solid #000000;
+    border-radius: 6mm;
+    box-sizing: border-box;
+}
+
+.jrb4f4p .bandrol-border3 {
+    margin: 1mm;
+    border: 5mm solid #ff0000;
+    width: auto;
+    border-radius: 4mm;
+    box-sizing: border-box;
+}
+
+.jrb4f4p .bandrol-border4 {
+    border-bottom: 3mm solid #000000;
+    box-sizing: border-box;
+}
+
+.jrb4f4p .bandrol-nama {
+    font-weight: bold;
+    color: #ff0000;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+}
+
+.jrb4f4p .bandrol-rp {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.jrb4f4p .bandrol-uom {
+    font-size: 20mm;
+    color: #000000;
+}
+
+.jrb4f4p .bandrol-toko {
+    color: #00268f;
+    box-sizing: border-box;
+}
+
+.jrb4f4p .text-container1 {
+    width: auto;
+    min-height: 30mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.jrb4f4p .resizable-text1 {
+    text-align: center;
+    color: #ff0000;
+    font-size: 20mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+    -webkit-text-stroke-width: 1px; /* Set the width of the outline to 1 pixel */
+    -webkit-text-stroke-color: black;
+    width: 100%;
+    max-width: 100%;
+    max-height: 53mm;
+    box-sizing: border-box;
+    line-height: 1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.jrb4f4p .text-container2 {
+    width: auto;
+    height: 53mm;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-family: "Anton", serif;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+.jrb4f4p .resizable-text2 {
+    font-size: 50mm;
+    transition: font-size 0.2s;
+    font-weight: 400;
+    width: auto;
+    line-height: 0.8;
+    box-sizing: border-box;
+}
+
+.jrb4f4p .text-container3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 23mm;
+    overflow: visible;
+    letter-spacing: 0;
+
+    box-sizing: border-box;
+}
+
+.jrb4f4p .logo.left,
+.jrb4f4p .logo.right {
+    width: 40mm;
+    height: 40mm;
+    margin-top: 20mm;
+}
+
+.jrb4f4p .resizable-text3 {
+    text-align: center;
+    font-size: 15mm;
+    color: #c75a00;
+    transition: font-size 0.2s;
+    box-sizing: border-box;
+    line-height: 0.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+/* jrpb1f42 Styles */
+.jrpb1f42 .bandrol-size {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.jrpb1f42 .bandrol-border1 {
+    width: 100%;
+    height: 100%;
+    border: 3mm solid #ffd900;
+    box-sizing: border-box;
+}
+
+.jrpb1f42 .text-container1 {
+    width: auto;
+    height: 40mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+    border: 3mm solid rgb(0, 0, 0);
+    margin: 2mm;
+}
+
+.jrpb1f42 .resizable-text1 {
+    text-align: center;
+    color: rgb(255, 153, 0);
+    font-size: 20mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.3;
+    margin: 0;
+    display: inline-block;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.jrpb1f42 .text-container2 {
+    margin: 2mm;
+    border: 3mm solid #ff0000;
+    width: auto;
+    height: 167mm;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-size: 20mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}
+
+.jrpb1f42 .promo {
+    font-size: 25mm;
+    font-family: "Poppins", serif;
+    font-weight: bold;
+    line-height: 1;
+    color: #000000;
+}
+
+.jrpb1f42 .resizable-text2 {
+    font-size: 70mm;
+    transition: font-size 0.2s;
+    color: red;
+    font-family: "Anton", serif;
+    font-weight: 400;
+
+    box-sizing: border-box;
+}
+
+.jrpb1f42 .text-container3 {
+    margin: 2mm;
+    width: auto;
+    height: 40mm;
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 3mm solid #ff0000;
+}
+
+.jrpb1f42 .resizable-text3 {
+    color: rgb(255, 153, 0);
+    font-size: 15mm;
+    font-family: "Anton", serif;
+    font-weight: 400;
+}

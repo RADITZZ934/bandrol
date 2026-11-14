@@ -10,6 +10,49 @@
   }
 }
 
+/* Smooth UI Transitions */
+.page-switch-enter-active,
+.page-switch-leave-active {
+  transition: opacity 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.page-switch-enter-from {
+  opacity: 0;
+  transform: translateY(10px) scale(0.97);
+}
+.page-switch-leave-to {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+}
+
+.thumb-pop-move,
+.thumb-pop-enter-active,
+.thumb-pop-leave-active {
+  transition: all 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.thumb-pop-enter-from,
+.thumb-pop-leave-to {
+  opacity: 0;
+  transform: scale(0.85) translateY(6px);
+}
+.thumb-pop-leave-active {
+  position: absolute;
+}
+
+.panel-swap-enter-active,
+.panel-swap-leave-active {
+  transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.panel-swap-enter-from {
+  opacity: 0;
+  transform: translateY(6px);
+}
+.panel-swap-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
 /* Precision Print Rules */
 @media print {
   @page {

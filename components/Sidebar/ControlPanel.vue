@@ -1,23 +1,105 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import * as XLSX from 'xlsx'
 import { DotLottieVue } from '@lottiefiles/dotlottie-vue'
-import { FileUp, FileText } from 'lucide-vue-next'
+import { FileSpreadsheet, FileText, Lock } from 'lucide-vue-next'
+import type { BandrolPageData, UomType } from '~/types'
 import { useBandrolStore } from '~/stores/bandrolStore'
-import { UOM_OPTIONS } from '~/utils/constants'
+import { UOM_OPTIONS, formatPriceId } from '~/utils/constants'
 import SizeSelector from '~/components/Sidebar/SizeSelector.vue'
 import InputText from '~/components/Sidebar/InputText.vue'
 import ItemAutocomplete from '~/components/Sidebar/ItemAutocomplete.vue'
 
 const store = useBandrolStore()
-const uploadedFileName = ref<string | null>(null)
+const uploadedSummary = ref<string | null>(null)
+const uploadError = ref<string | null>(null)
 const lottieFailed = ref(false)
 
-function handleFileUpload(event: Event) {
+function normalizeUom(raw: unknown): UomType {
+  const val = String(raw ?? '').trim().toUpperCase()
+  if (val === 'PCS' || val === 'KG' || val === 'GRAM' || val === 'PACK') {
+    return val
+  }
+  if (val === 'GR' || val === 'G') return 'GRAM'
+  if (val === 'PC' || val === 'UNIT') return 'PCS'
+  return 'KG'
+}
+
+function getField(row: Record<string, unknown>, keys: string[]): string {
+  for (const key of keys) {
+    if (row[key] !== undefined && row[key] !== null) {
+      return String(row[key]).trim()
+    }
+  }
+  const lowerMap = new Map(
+    Object.entries(row).map(([k, v]) => [k.trim().toLowerCase(), v])
+  )
+  for (const key of keys) {
+    const val = lowerMap.get(key.toLowerCase())
+    if (val !== undefined && val !== null) {
+      return String(val).trim()
+    }
+  }
+  return ''
+}
+
+async function handleExcelUpload(event: Event) {
   const input = event.target as HTMLInputElement
-  const file = input.files?.[0]
-  if (!file) return
-  uploadedFileName.value = file.name
-  store.setFileName(file.name)
+  const files = input.files
+  if (!files || files.length === 0) return
+
+  uploadError.value = null
+  uploadedSummary.value = null
+
+  try {
+    const imported: Array<Partial<BandrolPageData>> = []
+
+    for (const file of Array.from(files)) {
+      const buffer = await file.arrayBuffer()
+      const workbook = XLSX.read(new Uint8Array(buffer), { type: 'array' })
+      const sheetName = workbook.SheetNames[0]
+      if (!sheetName) continue
+      const sheet = workbook.Sheets[sheetName]
+      const rows = XLSX.utils.sheet_to_json<Record<string, unknown>>(sheet)
+
+      for (const row of rows) {
+        const itemName = getField(row, ['Nama Produk', 'Nama Item', 'name'])
+        const rawPrice = getField(row, ['Price', 'Harga', 'Harga/UOM'])
+        const price = rawPrice ? String(Math.round(Number(rawPrice.replace(/[^\d.-]/g, '')) || 0)) : '0'
+        const rawDiscount = getField(row, ['Discount Member', 'Potongan Harga', 'Diskon Member'])
+        const memberDiscount = rawDiscount ? String(Math.round(Number(rawDiscount.replace(/[^\d.-]/g, '')) || 0)) : '0'
+        const barcode = getField(row, ['Kode Produk', 'Barcode', 'Kode'])
+        const uom = normalizeUom(getField(row, ['UOM', 'Satuan']))
+        const branch = getField(row, ['Name Store', 'Nama Toko', 'Cabang', 'Kode Store'])
+
+        if (itemName || barcode) {
+          imported.push({
+            itemName,
+            price,
+            memberDiscount,
+            uom,
+            barcode,
+            branch: branch || undefined,
+          })
+        }
+      }
+    }
+
+    if (imported.length === 0) {
+      uploadError.value = 'Tidak ada data produk yang ditemukan di file Excel.'
+      return
+    }
+
+    store.importPages(imported)
+    const firstName = files[0].name.replace(/\.(xlsx|xls|csv)$/i, '')
+    store.setFileName(`${firstName}.pdf`)
+    uploadedSummary.value = `${imported.length} item dari ${files.length} file dimuat`
+  } catch (err) {
+    uploadError.value = 'Gagal membaca file Excel. Pastikan format .xls/.xlsx valid.'
+    console.error('Excel import error:', err)
+  } finally {
+    input.value = ''
+  }
 }
 </script>
 
@@ -27,27 +109,23 @@ function handleFileUpload(event: Event) {
   >
     <div class="p-3 space-y-3">
       <!-- 1. Theme / Color Mode Toggle -->
-      <div class="grid grid-cols-2 rounded-md border border-gray-300 bg-gray-200 p-0.5 text-[11px] font-medium">
+      <div class="relative grid grid-cols-2 rounded-md border border-gray-300 bg-gray-200 p-0.5 text-[11px] font-medium">
+        <div
+          class="pointer-events-none absolute inset-y-0.5 left-0.5 w-[calc(50%-2px)] rounded bg-white shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          :style="{ transform: store.colorMode === 'colour' ? 'translateX(100%)' : 'translateX(0%)' }"
+        />
         <button
           type="button"
-          class="py-1 rounded transition"
-          :class="
-            store.colorMode === 'grayscale'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'text-gray-600 hover:text-gray-900'
-          "
+          class="relative z-10 py-1 rounded transition-colors duration-200"
+          :class="store.colorMode === 'grayscale' ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'"
           @click="store.setColorMode('grayscale')"
         >
           Grayscale
         </button>
         <button
           type="button"
-          class="py-1 rounded transition"
-          :class="
-            store.colorMode === 'colour'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'text-gray-600 hover:text-gray-900'
-          "
+          class="relative z-10 py-1 rounded transition-colors duration-200"
+          :class="store.colorMode === 'colour' ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'"
           @click="store.setColorMode('colour')"
         >
           Colour
@@ -55,55 +133,47 @@ function handleFileUpload(event: Event) {
       </div>
 
       <!-- 2. Input Method Toggle -->
-      <div class="grid grid-cols-2 rounded-md border border-gray-300 bg-gray-200 p-0.5 text-[11px] font-medium">
+      <div class="relative grid grid-cols-2 rounded-md border border-gray-300 bg-gray-200 p-0.5 text-[11px] font-medium">
+        <div
+          class="pointer-events-none absolute inset-y-0.5 left-0.5 w-[calc(50%-2px)] rounded bg-white shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          :style="{ transform: store.inputMethod === 'upload-excel' ? 'translateX(100%)' : 'translateX(0%)' }"
+        />
         <button
           type="button"
-          class="py-1 rounded transition"
-          :class="
-            store.inputMethod === 'manual'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'text-gray-600 hover:text-gray-900'
-          "
+          class="relative z-10 py-1 rounded transition-colors duration-200"
+          :class="store.inputMethod === 'manual' ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'"
           @click="store.setInputMethod('manual')"
         >
           Manual
         </button>
         <button
           type="button"
-          class="py-1 rounded transition"
-          :class="
-            store.inputMethod === 'upload-pdf'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'text-gray-600 hover:text-gray-900'
-          "
-          @click="store.setInputMethod('upload-pdf')"
+          class="relative z-10 py-1 rounded transition-colors duration-200"
+          :class="store.inputMethod === 'upload-excel' ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'"
+          @click="store.setInputMethod('upload-excel')"
         >
-          Upload PDF
+          Upload Excel
         </button>
       </div>
 
       <!-- 3. Brand Identity Toggle -->
-      <div class="grid grid-cols-2 rounded-md border border-gray-300 bg-gray-200 p-0.5 text-[11px] font-medium">
+      <div class="relative grid grid-cols-2 rounded-md border border-gray-300 bg-gray-200 p-0.5 text-[11px] font-medium">
+        <div
+          class="pointer-events-none absolute inset-y-0.5 left-0.5 w-[calc(50%-2px)] rounded bg-white shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          :style="{ transform: store.brand === 'bazzar' ? 'translateX(100%)' : 'translateX(0%)' }"
+        />
         <button
           type="button"
-          class="py-1 rounded transition"
-          :class="
-            store.brand === 'laskar'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'text-gray-600 hover:text-gray-900'
-          "
+          class="relative z-10 py-1 rounded transition-colors duration-200"
+          :class="store.brand === 'laskar' ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'"
           @click="store.setBrand('laskar')"
         >
           Laskar
         </button>
         <button
           type="button"
-          class="py-1 rounded transition"
-          :class="
-            store.brand === 'bazzar'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'text-gray-600 hover:text-gray-900'
-          "
+          class="relative z-10 py-1 rounded transition-colors duration-200"
+          :class="store.brand === 'bazzar' ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'"
           @click="store.setBrand('bazzar')"
         >
           Bazzar
@@ -111,39 +181,38 @@ function handleFileUpload(event: Event) {
       </div>
 
       <!-- 4. Template Style Toggle (Terbaru vs Modern vs Klasik) -->
-      <div class="grid grid-cols-3 rounded-md border border-gray-300 bg-gray-200 p-0.5 text-[11px] font-medium">
+      <div class="relative grid grid-cols-3 rounded-md border border-gray-300 bg-gray-200 p-0.5 text-[11px] font-medium">
+        <div
+          class="pointer-events-none absolute inset-y-0.5 left-0.5 w-[calc(33.333%-1.33px)] rounded bg-white shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          :style="{
+            transform:
+              store.templateStyle === 'latest'
+                ? 'translateX(0%)'
+                : store.templateStyle === 'modern'
+                  ? 'translateX(100%)'
+                  : 'translateX(200%)',
+          }"
+        />
         <button
           type="button"
-          class="py-1 rounded transition"
-          :class="
-            store.templateStyle === 'latest'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'text-gray-600 hover:text-gray-900'
-          "
+          class="relative z-10 py-1 rounded transition-colors duration-200"
+          :class="store.templateStyle === 'latest' ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'"
           @click="store.setTemplateStyle('latest')"
         >
           Terbaru
         </button>
         <button
           type="button"
-          class="py-1 rounded transition"
-          :class="
-            store.templateStyle === 'modern'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'text-gray-600 hover:text-gray-900'
-          "
+          class="relative z-10 py-1 rounded transition-colors duration-200"
+          :class="store.templateStyle === 'modern' ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'"
           @click="store.setTemplateStyle('modern')"
         >
           Modern
         </button>
         <button
           type="button"
-          class="py-1 rounded transition"
-          :class="
-            store.templateStyle === 'classic'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'text-gray-600 hover:text-gray-900'
-          "
+          class="relative z-10 py-1 rounded transition-colors duration-200"
+          :class="store.templateStyle === 'classic' ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'"
           @click="store.setTemplateStyle('classic')"
         >
           Klasik
@@ -154,84 +223,148 @@ function handleFileUpload(event: Event) {
         <!-- Size & Model Dropdown -->
         <SizeSelector />
 
-        <!-- Manual Inputs -->
-        <template v-if="store.inputMethod === 'manual'">
-          <ItemAutocomplete />
+        <!-- Manual / Upload Excel Swap -->
+        <Transition name="panel-swap" mode="out-in">
+          <div v-if="store.inputMethod === 'manual'" key="manual" class="space-y-2.5">
+            <ItemAutocomplete />
 
-          <InputText
-            label="*Harga/UOM"
-            :model-value="store.activePage.price"
-            placeholder="contoh: 5000"
-            numeric-only
-            @update:model-value="store.updateActivePage({ price: $event })"
-          />
+            <InputText
+              label="*Harga/UOM"
+              :model-value="store.activePage.price"
+              placeholder="contoh: 22000"
+              numeric-only
+              @update:model-value="store.updateActivePage({ price: $event })"
+            />
 
-          <!-- UOM Quick Buttons -->
-          <div class="space-y-1">
-            <label class="block text-[11px] font-medium text-gray-700">
-              *UOM
-            </label>
-            <div class="grid grid-cols-3 gap-1.5">
-              <button
-                v-for="uom in UOM_OPTIONS"
-                :key="uom"
-                type="button"
-                class="py-1.5 rounded text-[10px] font-bold tracking-wide transition"
-                :class="
-                  store.activePage.uom === uom
-                    ? 'bg-[#48a842] text-white shadow-sm'
-                    : 'bg-gray-300/80 text-gray-700 hover:bg-gray-300'
-                "
-                @click="store.updateActivePage({ uom })"
-              >
-                {{ uom }}
-              </button>
+            <!-- Potongan Harga Member (Khusus BANDROL PROMO MEMBER) -->
+            <div
+              v-if="store.activePreset.isMemberPromo"
+              class="space-y-1 rounded-md bg-blue-50/80 border border-blue-200 p-2"
+            >
+              <InputText
+                label="*Potongan Harga (Member)"
+                :model-value="store.activePage.memberDiscount || ''"
+                placeholder="contoh: 2000"
+                numeric-only
+                @update:model-value="store.updateActivePage({ memberDiscount: $event })"
+              />
+              <div class="text-[10px] font-semibold text-blue-800 flex justify-between px-0.5">
+                <span>Harga Member:</span>
+                <span>
+                  Rp {{
+                    formatPriceId(
+                      String(
+                        Math.max(
+                          0,
+                          (Number((store.activePage.price || '0').replace(/\D/g, '')) || 0) -
+                            (Number((store.activePage.memberDiscount || '0').replace(/\D/g, '')) || 0)
+                        )
+                      )
+                    )
+                  }}
+                </span>
+              </div>
             </div>
+
+            <!-- UOM Quick Buttons -->
+            <div class="space-y-1">
+              <div class="flex items-center justify-between">
+                <label class="block text-[11px] font-medium text-gray-700">
+                  *UOM
+                </label>
+                <span
+                  v-if="store.activePage.isBarcodeLocked"
+                  class="inline-flex items-center gap-0.5 text-[9px] font-medium text-amber-700"
+                >
+                  <Lock class="w-2.5 h-2.5" />
+                  Terkunci
+                </span>
+              </div>
+              <div class="grid grid-cols-3 gap-1.5">
+                <button
+                  v-for="uom in UOM_OPTIONS"
+                  :key="uom"
+                  type="button"
+                  :disabled="Boolean(store.activePage.isBarcodeLocked)"
+                  class="py-1.5 rounded text-[10px] font-bold tracking-wide transition-all duration-200"
+                  :class="[
+                    store.activePage.uom === uom
+                      ? 'bg-[#48a842] text-white shadow-sm'
+                      : 'bg-gray-300/80 text-gray-700 hover:bg-gray-300',
+                    store.activePage.isBarcodeLocked
+                      ? 'opacity-70 cursor-not-allowed'
+                      : 'active:scale-95',
+                  ]"
+                  @click="store.updateActivePage({ uom })"
+                >
+                  {{ uom }}
+                </button>
+                <button
+                  v-if="!UOM_OPTIONS.includes(store.activePage.uom)"
+                  type="button"
+                  disabled
+                  class="py-1.5 rounded text-[10px] font-bold tracking-wide bg-[#48a842] text-white shadow-sm opacity-85 cursor-not-allowed"
+                >
+                  {{ store.activePage.uom }}
+                </button>
+              </div>
+            </div>
+
+            <InputText
+              label="*Barcode"
+              :model-value="store.activePage.barcode"
+              :disabled="Boolean(store.activePage.isBarcodeLocked)"
+              placeholder="Opsional (Tidak Harus Diisi)"
+              @update:model-value="store.updateActivePage({ barcode: $event })"
+            />
+
+            <InputText
+              label="*Cabang / Lokasi"
+              :model-value="store.activePage.branch"
+              placeholder="contoh: Tobo 2"
+              @update:model-value="store.updateActivePage({ branch: $event })"
+            />
           </div>
 
-          <InputText
-            label="*Barcode"
-            :model-value="store.activePage.barcode"
-            :disabled="Boolean(store.activePage.isBarcodeLocked)"
-            placeholder="Opsional (Tidak Harus Diisi)"
-            @update:model-value="store.updateActivePage({ barcode: $event })"
-          />
-
-          <InputText
-            label="*Cabang / Lokasi"
-            :model-value="store.activePage.branch"
-            placeholder="contoh: Tobo 2"
-            @update:model-value="store.updateActivePage({ branch: $event })"
-          />
-        </template>
-
-        <!-- Upload PDF Mode -->
-        <template v-else>
-          <div class="rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 p-4 text-center space-y-2">
-            <FileUp class="w-6 h-6 text-gray-400 mx-auto" />
-            <p class="text-[11px] text-gray-600">
-              Unggah file PDF daftar harga untuk diproses ke bandrol.
+          <div
+            v-else
+            key="upload-excel"
+            class="rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 p-3.5 text-center space-y-2"
+          >
+            <FileSpreadsheet class="w-6 h-6 text-green-600 mx-auto" />
+            <p class="text-[11px] text-gray-600 leading-snug">
+              Unggah file Excel (<span class="font-mono">.xls / .xlsx</span>). Bisa pilih lebih dari satu file.
+            </p>
+            <p class="text-[10px] text-gray-400 leading-tight">
+              Kolom: Kode Produk, Nama Produk, Price, UOM, Name Store
             </p>
             <label
-              class="inline-block cursor-pointer rounded bg-[#48a842] hover:bg-[#3d9438] text-white text-[11px] font-semibold px-3 py-1.5 transition"
+              class="inline-block cursor-pointer rounded bg-[#48a842] hover:bg-[#3d9438] text-white text-[11px] font-semibold px-3 py-1.5 transition-all duration-200 active:scale-95"
             >
-              Pilih File PDF
+              Pilih File Excel
               <input
                 type="file"
-                accept="application/pdf"
+                accept=".xls,.xlsx,.csv"
+                multiple
                 class="hidden"
-                @change="handleFileUpload"
+                @change="handleExcelUpload"
               />
             </label>
             <div
-              v-if="uploadedFileName"
-              class="flex items-center justify-center gap-1 text-[11px] text-green-700 font-medium pt-1"
+              v-if="uploadedSummary"
+              class="flex items-center justify-center gap-1 text-[11px] text-green-700 font-semibold pt-1"
             >
               <FileText class="w-3.5 h-3.5 shrink-0" />
-              <span class="truncate">{{ uploadedFileName }}</span>
+              <span>{{ uploadedSummary }}</span>
             </div>
+            <p
+              v-if="uploadError"
+              class="text-[11px] text-red-600 font-medium pt-1"
+            >
+              {{ uploadError }}
+            </p>
           </div>
-        </template>
+        </Transition>
       </div>
     </div>
 
@@ -256,7 +389,7 @@ function handleFileUpload(event: Event) {
 
       <div class="flex items-center gap-2">
         <img
-          src="~/assets/images/logo-bina.jpg"
+          src="~/assets/images/bram.png"
           alt="BINA Logo"
           class="w-7 h-7 rounded object-contain shrink-0"
         />

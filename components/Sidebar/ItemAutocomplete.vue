@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import type { ProductItem } from '~/types'
-import { searchProducts } from '~/utils/productCatalog'
+import { ensureProductsLoaded, searchProducts } from '~/utils/productCatalog'
 import { useBandrolStore } from '~/stores/bandrolStore'
 
 const store = useBandrolStore()
 const containerRef = ref<HTMLElement | null>(null)
 const isOpen = ref(false)
+
+onMounted(() => {
+  ensureProductsLoaded()
+})
 
 const suggestions = computed(() =>
   searchProducts(store.activePage.itemName, 15)
@@ -30,6 +34,7 @@ function selectItem(item: ProductItem) {
   store.updateActivePage({
     itemName: item.name,
     barcode: item.code,
+    uom: item.uom || store.activePage.uom,
     isBarcodeLocked: true,
   })
   isOpen.value = false
@@ -67,11 +72,15 @@ function selectItem(item: ProductItem) {
         <span class="text-[11px] font-semibold text-gray-900 leading-tight">
           {{ item.name }}
         </span>
-        <span class="text-[10px] text-gray-500 font-mono">
-          {{ item.code }}
-        </span>
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-[10px] text-gray-500 font-mono">
+            {{ item.code }}
+          </span>
+          <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-green-100 text-green-800">
+            {{ item.uom }}
+          </span>
+        </div>
       </button>
     </div>
   </div>
 </template>
-

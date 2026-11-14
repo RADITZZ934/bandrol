@@ -1,4 +1,5 @@
 import type { BandrolSizePreset } from '~/types'
+import { getF4LayoutInfo } from '~/utils/constants'
 
 /**
  * Injects a dynamic @page CSS rule matching the active preset dimensions (in mm)
@@ -6,6 +7,10 @@ import type { BandrolSizePreset } from '~/types'
  */
 export function triggerBandrolPrint(preset: BandrolSizePreset): void {
   if (typeof window === 'undefined') return
+
+  const layout = getF4LayoutInfo(preset)
+  const pageWidthMm = layout.isTiledPoster ? layout.sheetWidthMm : preset.widthMm
+  const pageHeightMm = layout.isTiledPoster ? layout.sheetHeightMm : preset.heightMm
 
   const styleId = 'bandrol-dynamic-page-style'
   let styleEl = document.getElementById(styleId) as HTMLStyleElement | null
@@ -17,7 +22,7 @@ export function triggerBandrolPrint(preset: BandrolSizePreset): void {
 
   styleEl.textContent = `
     @page {
-      size: ${preset.widthMm}mm ${preset.heightMm}mm;
+      size: ${pageWidthMm}mm ${pageHeightMm}mm;
       margin: 0;
     }
   `

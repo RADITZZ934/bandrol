@@ -45,19 +45,31 @@ export const BANDROL_SIZE_PRESETS: BandrolSizePreset[] = [
   },
   {
     id: 'f4-promo-landscape',
-    label: '13. F4 Promo Landscape (330x210 mm)',
-    widthMm: 330,
-    heightMm: 210,
+    label: '13. F4 Promo Landscape (4× F4: 660×420 mm)',
+    widthMm: 660,
+    heightMm: 420,
     orientation: 'landscape',
     isPromo: true,
+    tileCols: 2,
+    tileRows: 2,
   },
   {
     id: 'f4-2-promo-portrait',
-    label: '9. F4 2 Promo Portrait (330x260 mm)',
-    widthMm: 330,
-    heightMm: 260,
-    orientation: 'landscape',
+    label: '9. F4 2 Promo Portrait (2× F4: 420×330 mm)',
+    widthMm: 420,
+    heightMm: 330,
+    orientation: 'portrait',
     isPromo: true,
+    tileCols: 2,
+    tileRows: 1,
+  },
+  {
+    id: 'bandrol-promo-member',
+    label: 'BANDROL PROMO MEMBER (330×210 mm)',
+    widthMm: 330,
+    heightMm: 210,
+    orientation: 'landscape',
+    isMemberPromo: true,
   },
 ]
 
@@ -73,5 +85,56 @@ export function formatPriceId(raw: string): string {
   const digits = raw.replace(/\D/g, '')
   if (!digits) return '0'
   return digits.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+}
+
+export interface F4LayoutInfo {
+  sheetWidthMm: number
+  sheetHeightMm: number
+  cols: number
+  rows: number
+  totalSlots: number
+  isTiledPoster: boolean
+  tileCols: number
+  tileRows: number
+  sheetsPerPage: number
+}
+
+export function getF4LayoutInfo(preset: BandrolSizePreset): F4LayoutInfo {
+  const isPortrait = preset.orientation === 'portrait'
+  const sheetWidthMm = isPortrait ? 210 : 330
+  const sheetHeightMm = isPortrait ? 330 : 210
+
+  const tileCols = preset.tileCols ?? 1
+  const tileRows = preset.tileRows ?? 1
+  const isTiledPoster = tileCols > 1 || tileRows > 1
+
+  if (isTiledPoster) {
+    return {
+      sheetWidthMm,
+      sheetHeightMm,
+      cols: 1,
+      rows: 1,
+      totalSlots: 1,
+      isTiledPoster: true,
+      tileCols,
+      tileRows,
+      sheetsPerPage: tileCols * tileRows,
+    }
+  }
+
+  const cols = Math.max(1, Math.floor((sheetWidthMm + 1) / preset.widthMm))
+  const rows = Math.max(1, Math.floor((sheetHeightMm + 1) / preset.heightMm))
+
+  return {
+    sheetWidthMm,
+    sheetHeightMm,
+    cols,
+    rows,
+    totalSlots: cols * rows,
+    isTiledPoster: false,
+    tileCols: 1,
+    tileRows: 1,
+    sheetsPerPage: 1,
+  }
 }
 
