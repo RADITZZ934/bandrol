@@ -9,8 +9,9 @@ export function triggerBandrolPrint(preset: BandrolSizePreset): void {
   if (typeof window === 'undefined') return
 
   const layout = getF4LayoutInfo(preset)
-  const pageWidthMm = layout.isTiledPoster ? layout.sheetWidthMm : preset.widthMm
-  const pageHeightMm = layout.isTiledPoster ? layout.sheetHeightMm : preset.heightMm
+  const useF4Imposition = layout.isTiledPoster || preset.id === 'mini-mikro'
+  const pageWidthMm = useF4Imposition ? layout.sheetWidthMm : preset.widthMm
+  const pageHeightMm = useF4Imposition ? layout.sheetHeightMm : preset.heightMm
 
   const styleId = 'bandrol-dynamic-page-style'
   let styleEl = document.getElementById(styleId) as HTMLStyleElement | null

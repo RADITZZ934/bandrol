@@ -100,6 +100,7 @@ export interface F4LayoutInfo {
   cols: number
   rows: number
   totalSlots: number
+  gapMm: number
   isTiledPoster: boolean
   tileCols: number
   tileRows: number
@@ -122,10 +123,37 @@ export function getF4LayoutInfo(preset: BandrolSizePreset): F4LayoutInfo {
       cols: 1,
       rows: 1,
       totalSlots: 1,
+      gapMm: 0,
       isTiledPoster: true,
       tileCols,
       tileRows,
       sheetsPerPage: tileCols * tileRows,
+    }
+  }
+
+  // Add comfortable scissor gap & printer margin for mini-mikro
+  if (preset.id === 'mini-mikro') {
+    const gapMm = 4
+    const marginMm = 5
+    const cols = Math.max(
+      1,
+      Math.floor((sheetWidthMm - marginMm * 2 + gapMm) / (preset.widthMm + gapMm))
+    )
+    const rows = Math.max(
+      1,
+      Math.floor((sheetHeightMm - marginMm * 2 + gapMm) / (preset.heightMm + gapMm))
+    )
+    return {
+      sheetWidthMm,
+      sheetHeightMm,
+      cols,
+      rows,
+      totalSlots: cols * rows,
+      gapMm,
+      isTiledPoster: false,
+      tileCols: 1,
+      tileRows: 1,
+      sheetsPerPage: 1,
     }
   }
 
@@ -138,6 +166,7 @@ export function getF4LayoutInfo(preset: BandrolSizePreset): F4LayoutInfo {
     cols,
     rows,
     totalSlots: cols * rows,
+    gapMm: 0,
     isTiledPoster: false,
     tileCols: 1,
     tileRows: 1,

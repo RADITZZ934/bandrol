@@ -11,9 +11,12 @@ import BandrolMemberTemplate from '~/components/Canvas/BandrolMemberTemplate.vue
 interface Props {
   page: BandrolPageData
   index: number
+  disablePrintPage?: boolean
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  disablePrintPage: false,
+})
 const store = useBandrolStore()
 
 const preset = computed(() => getPresetById(props.page.sizeId))
@@ -70,7 +73,8 @@ const tiles = computed(() => {
           :style="{ transform: `scale(${previewScale})` }"
         >
           <div
-            class="bandrol-print-page bg-white overflow-hidden"
+            class="bg-white overflow-hidden"
+            :class="{ 'bandrol-print-page': !disablePrintPage }"
             :style="printPageStyle"
             :data-width-mm="preset.widthMm"
             :data-height-mm="preset.heightMm"

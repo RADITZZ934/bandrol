@@ -165,13 +165,14 @@ const f4Sheets = computed(() => {
           class="flex flex-col items-center"
         >
           <div
-            class="bg-white shadow-md border border-gray-300 relative overflow-hidden"
+            class="bg-white shadow-md border border-gray-300 relative overflow-hidden flex items-center justify-center"
             :style="sheetBoxStyle"
           >
             <div
               class="grid content-start justify-start"
               :style="{
                 gridTemplateColumns: `repeat(${f4Info.cols}, auto)`,
+                gap: `${(f4Info.gapMm * MM_TO_PX * sheetScale).toFixed(2)}px`,
               }"
             >
               <div
