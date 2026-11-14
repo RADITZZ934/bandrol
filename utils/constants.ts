@@ -71,6 +71,13 @@ export const BANDROL_SIZE_PRESETS: BandrolSizePreset[] = [
     orientation: 'landscape',
     isMemberPromo: true,
   },
+  {
+    id: 'mini-mikro',
+    label: 'Bandrol kecil mini mikro (65×35 mm)',
+    widthMm: 65,
+    heightMm: 35,
+    orientation: 'landscape',
+  },
 ]
 
 export const UOM_OPTIONS: UomType[] = ['PCS', 'KG', 'GRAM', 'PACK']

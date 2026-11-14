@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import type { BandrolPageData, BandrolSizePreset, BrandType, ColorMode } from '~/types'
 import { formatPriceId } from '~/utils/constants'
 import QRCodeRender from '~/components/Canvas/QRCodeRender.vue'
+import LinearBarcodeRender from '~/components/Canvas/LinearBarcodeRender.vue'
 
 interface Props {
   page: BandrolPageData
@@ -25,7 +26,7 @@ const titleFontSize = computed(() => {
   let baseMm = 20 * scaleFactor.value
   if (len > 30) baseMm *= 0.78
   else if (len > 23) baseMm *= 0.88
-  return `${Math.max(7, baseMm).toFixed(2)}mm`
+  return `${Math.max(2.6, baseMm).toFixed(2)}mm`
 })
 
 const priceFontSize = computed(() => {
@@ -39,23 +40,29 @@ const priceFontSize = computed(() => {
     baseMm *= 1.06
   }
 
-  return `${Math.max(18, baseMm).toFixed(2)}mm`
+  return `${Math.max(6.5, baseMm).toFixed(2)}mm`
 })
 
 const qrSizePx = computed(() => {
   const basePx = 150 * scaleFactor.value
-  return Math.round(Math.max(52, basePx))
+  return Math.round(Math.max(18, basePx))
 })
 </script>
 
 <template>
   <div
-    class="w-full h-full bg-white flex flex-col justify-between p-[2.5mm] box-border select-none"
+    class="w-full h-full bg-white flex flex-col justify-between box-border select-none"
     :class="{ grayscale: colorMode === 'grayscale' }"
+    :style="{ padding: `${Math.max(0.6, 2.5 * scaleFactor).toFixed(2)}mm` }"
   >
     <!-- Outer crisp border frame -->
     <div
-      class="w-full h-full border-[0.7mm] border-neutral-900 flex flex-col justify-between px-[5.5mm] py-[4mm] box-border bg-white relative overflow-hidden"
+      class="w-full h-full border-neutral-900 flex flex-col justify-between box-border bg-white relative overflow-hidden"
+      :style="{
+        borderWidth: `${Math.max(0.3, 0.7 * scaleFactor).toFixed(2)}mm`,
+        borderStyle: 'solid',
+        padding: `${Math.max(0.8, 4 * scaleFactor).toFixed(2)}mm ${Math.max(1.2, 5.5 * scaleFactor).toFixed(2)}mm`,
+      }"
     >
       <!-- Optional Promo Badge -->
       <div
@@ -67,8 +74,12 @@ const qrSizePx = computed(() => {
 
       <!-- Top Header: Item Name -->
       <div
-        class="border-b-[0.9mm] border-neutral-900 text-center shrink-0 flex items-center justify-center"
-        :style="{ paddingBottom: `${(2.5 * scaleFactor).toFixed(2)}mm` }"
+        class="border-neutral-900 text-center shrink-0 flex items-center justify-center"
+        :style="{
+          borderBottomWidth: `${Math.max(0.3, 0.9 * scaleFactor).toFixed(2)}mm`,
+          borderBottomStyle: 'solid',
+          paddingBottom: `${Math.max(0.5, 2.5 * scaleFactor).toFixed(2)}mm`,
+        }"
       >
         <h1
           class="font-sans font-extrabold uppercase text-neutral-900 tracking-tight leading-none truncate w-full"
@@ -82,9 +93,9 @@ const qrSizePx = computed(() => {
       <div
         class="flex-1 flex items-center justify-between min-h-0"
         :style="{
-          gap: `${(4 * scaleFactor).toFixed(2)}mm`,
-          paddingTop: `${(3 * scaleFactor).toFixed(2)}mm`,
-          paddingBottom: `${(3 * scaleFactor).toFixed(2)}mm`,
+          gap: `${Math.max(1, 4 * scaleFactor).toFixed(2)}mm`,
+          paddingTop: `${Math.max(0.5, 3 * scaleFactor).toFixed(2)}mm`,
+          paddingBottom: `${Math.max(0.5, 3 * scaleFactor).toFixed(2)}mm`,
         }"
       >
         <!-- RP./UOM Box (Laskar: Yellow/Black, Bazzar: Green/White) -->
@@ -93,19 +104,19 @@ const qrSizePx = computed(() => {
           :class="brand === 'laskar' ? 'bg-[#fff200] text-neutral-900' : 'bg-[#009846] text-white'"
           :style="{
             width: `${(52 * scaleFactor).toFixed(2)}mm`,
-            height: `${(95 * scaleFactor).toFixed(2)}mm`,
-            borderRadius: `${(3 * scaleFactor).toFixed(2)}mm`,
+            height: `${(88 * scaleFactor).toFixed(2)}mm`,
+            borderRadius: `${Math.max(0.8, 3 * scaleFactor).toFixed(2)}mm`,
           }"
         >
           <span
             class="font-sans font-extrabold leading-none"
-            :style="{ fontSize: `${Math.max(5, 14 * scaleFactor).toFixed(2)}mm` }"
+            :style="{ fontSize: `${Math.max(1.8, 14 * scaleFactor).toFixed(2)}mm` }"
           >
             RP.
           </span>
           <span
-            class="font-sans font-extrabold leading-tight mt-1"
-            :style="{ fontSize: `${Math.max(5, 14 * scaleFactor).toFixed(2)}mm` }"
+            class="font-sans font-extrabold leading-tight mt-0.5"
+            :style="{ fontSize: `${Math.max(1.8, 14 * scaleFactor).toFixed(2)}mm` }"
           >
             /{{ page.uom }}
           </span>
@@ -125,19 +136,26 @@ const qrSizePx = computed(() => {
           </span>
         </div>
 
-        <!-- QR Code (Only rendered when barcode is non-empty) -->
-        <QRCodeRender
-          v-if="page.barcode && page.barcode.trim().length > 0"
-          :value="page.barcode"
-          :size="qrSizePx"
-        />
+        <!-- Barcode: Linear 1D for mini-mikro, QR Code for other sizes -->
+        <template v-if="page.barcode && page.barcode.trim().length > 0">
+          <LinearBarcodeRender
+            v-if="preset.id === 'mini-mikro'"
+            :value="page.barcode"
+            :scale-factor="scaleFactor"
+          />
+          <QRCodeRender
+            v-else
+            :value="page.barcode"
+            :size="qrSizePx"
+          />
+        </template>
       </div>
 
       <!-- Bottom Footer: Branch + Thick Yellow-Green-Red Ribbon + Brand Logo -->
       <div class="flex items-end justify-between shrink-0">
         <div
           class="font-display font-black uppercase text-neutral-900 tracking-tight leading-none"
-          :style="{ fontSize: `${Math.max(4.5, 7 * scaleFactor).toFixed(2)}mm` }"
+          :style="{ fontSize: `${Math.max(1.8, 7 * scaleFactor).toFixed(2)}mm` }"
         >
           {{ page.branch?.trim() || 'BABAT 1' }}
         </div>
@@ -145,29 +163,29 @@ const qrSizePx = computed(() => {
         <!-- Brand Ribbon & Logo -->
         <div
           class="flex items-center"
-          :style="{ gap: `${(3 * scaleFactor).toFixed(2)}mm` }"
+          :style="{ gap: `${Math.max(0.6, 3 * scaleFactor).toFixed(2)}mm` }"
         >
           <!-- Left Ribbon (Laskar: Yellow-Green-Red, Bazzar: Red-Green) -->
           <div
             class="flex flex-col"
-            :style="{ width: `${Math.max(18, 92 * scaleFactor).toFixed(2)}mm` }"
+            :style="{ width: `${Math.max(5, 92 * scaleFactor).toFixed(2)}mm` }"
           >
             <template v-if="brand === 'laskar'">
               <div
                 :style="{
-                  height: `${Math.max(1, 3 * scaleFactor).toFixed(2)}mm`,
+                  height: `${Math.max(0.45, 3 * scaleFactor).toFixed(2)}mm`,
                   backgroundColor: '#fde000',
                 }"
               />
               <div
                 :style="{
-                  height: `${Math.max(1, 3 * scaleFactor).toFixed(2)}mm`,
+                  height: `${Math.max(0.45, 3 * scaleFactor).toFixed(2)}mm`,
                   backgroundColor: '#22a047',
                 }"
               />
               <div
                 :style="{
-                  height: `${Math.max(1, 3 * scaleFactor).toFixed(2)}mm`,
+                  height: `${Math.max(0.45, 3 * scaleFactor).toFixed(2)}mm`,
                   backgroundColor: '#ef3b3b',
                 }"
               />
@@ -175,13 +193,13 @@ const qrSizePx = computed(() => {
             <template v-else>
               <div
                 :style="{
-                  height: `${Math.max(1.5, 4.5 * scaleFactor).toFixed(2)}mm`,
+                  height: `${Math.max(0.65, 4.5 * scaleFactor).toFixed(2)}mm`,
                   backgroundColor: '#ef2b2d',
                 }"
               />
               <div
                 :style="{
-                  height: `${Math.max(1.5, 4.5 * scaleFactor).toFixed(2)}mm`,
+                  height: `${Math.max(0.65, 4.5 * scaleFactor).toFixed(2)}mm`,
                   backgroundColor: '#009846',
                 }"
               />
@@ -194,37 +212,37 @@ const qrSizePx = computed(() => {
             src="~/assets/images/laskar-footer.png"
             alt="Laskar Buah"
             class="w-auto object-contain"
-            :style="{ height: `${Math.max(6, 16 * scaleFactor).toFixed(2)}mm` }"
+            :style="{ height: `${Math.max(2.5, 16 * scaleFactor).toFixed(2)}mm` }"
           />
           <img
             v-else
             src="~/assets/images/bazzar-footer.png"
             alt="Bazzar"
             class="w-auto object-contain"
-            :style="{ height: `${Math.max(6, 16 * scaleFactor).toFixed(2)}mm` }"
+            :style="{ height: `${Math.max(2.5, 16 * scaleFactor).toFixed(2)}mm` }"
           />
 
           <!-- Right trailing ribbon accent -->
           <div
             class="flex flex-col"
-            :style="{ width: `${Math.max(4, 12 * scaleFactor).toFixed(2)}mm` }"
+            :style="{ width: `${Math.max(2, 12 * scaleFactor).toFixed(2)}mm` }"
           >
             <template v-if="brand === 'laskar'">
               <div
                 :style="{
-                  height: `${Math.max(1, 3 * scaleFactor).toFixed(2)}mm`,
+                  height: `${Math.max(0.45, 3 * scaleFactor).toFixed(2)}mm`,
                   backgroundColor: '#fde000',
                 }"
               />
               <div
                 :style="{
-                  height: `${Math.max(1, 3 * scaleFactor).toFixed(2)}mm`,
+                  height: `${Math.max(0.45, 3 * scaleFactor).toFixed(2)}mm`,
                   backgroundColor: '#22a047',
                 }"
               />
               <div
                 :style="{
-                  height: `${Math.max(1, 3 * scaleFactor).toFixed(2)}mm`,
+                  height: `${Math.max(0.45, 3 * scaleFactor).toFixed(2)}mm`,
                   backgroundColor: '#ef3b3b',
                 }"
               />
@@ -232,13 +250,13 @@ const qrSizePx = computed(() => {
             <template v-else>
               <div
                 :style="{
-                  height: `${Math.max(1.5, 4.5 * scaleFactor).toFixed(2)}mm`,
+                  height: `${Math.max(0.65, 4.5 * scaleFactor).toFixed(2)}mm`,
                   backgroundColor: '#ef2b2d',
                 }"
               />
               <div
                 :style="{
-                  height: `${Math.max(1.5, 4.5 * scaleFactor).toFixed(2)}mm`,
+                  height: `${Math.max(0.65, 4.5 * scaleFactor).toFixed(2)}mm`,
                   backgroundColor: '#009846',
                 }"
               />

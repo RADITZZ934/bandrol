@@ -25,8 +25,11 @@ withDefaults(defineProps<Props>(), {
       foreground="#000000"
     />
     <span
-      class="mt-1 font-display font-bold text-black tracking-wide leading-none"
-      :style="{ fontSize: `${Math.max(10, Math.round(size * 0.14))}px` }"
+      class="font-display font-bold text-black tracking-wide leading-none"
+      :style="{
+        marginTop: `${Math.max(1, Math.round(size * 0.03))}px`,
+        fontSize: `${Math.max(5, Math.round(size * 0.15))}px`,
+      }"
     >
       {{ value.trim() }}
     </span>

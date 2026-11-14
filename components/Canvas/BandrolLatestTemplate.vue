@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import QrcodeVue from 'qrcode.vue'
 import type { BandrolPageData, BandrolSizePreset, BrandType, ColorMode } from '~/types'
 import { formatPriceId } from '~/utils/constants'
+import LinearBarcodeRender from '~/components/Canvas/LinearBarcodeRender.vue'
 
 interface Props {
   page: BandrolPageData
@@ -25,7 +26,7 @@ const titleFontSize = computed(() => {
   let baseMm = 21 * scaleFactor.value
   if (len > 30) baseMm *= 0.75
   else if (len > 22) baseMm *= 0.86
-  return `${Math.max(7, baseMm).toFixed(2)}mm`
+  return `${Math.max(2.6, baseMm).toFixed(2)}mm`
 })
 
 const priceFontSize = computed(() => {
@@ -34,25 +35,30 @@ const priceFontSize = computed(() => {
   if (len >= 7) baseMm *= 0.65
   else if (len >= 6) baseMm *= 0.78
   else if (len >= 5) baseMm *= 0.92
-  return `${Math.max(18, baseMm).toFixed(2)}mm`
+  return `${Math.max(6.5, baseMm).toFixed(2)}mm`
 })
 
-const slashFontSize = computed(() => `${Math.max(16, 72 * scaleFactor.value).toFixed(2)}mm`)
-const uomFontSize = computed(() => `${Math.max(7, 24 * scaleFactor.value).toFixed(2)}mm`)
-const rpFontSize = computed(() => `${Math.max(6, 17 * scaleFactor.value).toFixed(2)}mm`)
+const slashFontSize = computed(() => `${Math.max(5.5, 72 * scaleFactor.value).toFixed(2)}mm`)
+const uomFontSize = computed(() => `${Math.max(2.6, 24 * scaleFactor.value).toFixed(2)}mm`)
+const rpFontSize = computed(() => `${Math.max(2.2, 17 * scaleFactor.value).toFixed(2)}mm`)
 
-const qrSizePx = computed(() => Math.round(Math.max(38, 86 * scaleFactor.value)))
+const qrSizePx = computed(() => Math.round(Math.max(16, 86 * scaleFactor.value)))
 </script>
 
 <template>
   <div
-    class="w-full h-full bg-white p-[1.5mm] box-border select-none"
+    class="w-full h-full bg-white box-border select-none"
     :class="{ grayscale: colorMode === 'grayscale' }"
+    :style="{ padding: `${Math.max(0.5, 1.5 * scaleFactor).toFixed(2)}mm` }"
   >
     <!-- Crisp Outer Black Frame -->
     <div
-      class="w-full h-full border-[1.1mm] border-black bg-white flex flex-col justify-between box-border relative overflow-hidden"
-      :style="{ padding: `${(2.8 * scaleFactor).toFixed(2)}mm ${(3.2 * scaleFactor).toFixed(2)}mm` }"
+      class="w-full h-full border-black bg-white flex flex-col justify-between box-border relative overflow-hidden"
+      :style="{
+        borderWidth: `${Math.max(0.35, 1.1 * scaleFactor).toFixed(2)}mm`,
+        borderStyle: 'solid',
+        padding: `${(2.8 * scaleFactor).toFixed(2)}mm ${(3.2 * scaleFactor).toFixed(2)}mm`,
+      }"
     >
       <!-- Optional Promo Badge -->
       <div
@@ -189,31 +195,38 @@ const qrSizePx = computed(() => Math.round(Math.max(38, 86 * scaleFactor.value))
           </div>
         </div>
 
-        <!-- Bottom-Right QR Code + Vertical Barcode Text -->
-        <div
-          v-if="page.barcode && page.barcode.trim().length > 0"
-          class="flex items-center shrink-0"
-          :style="{ gap: `${(1.2 * scaleFactor).toFixed(2)}mm` }"
-        >
-          <QrcodeVue
-            :value="page.barcode.trim()"
-            :size="qrSizePx"
-            level="M"
-            render-as="svg"
-            background="#ffffff"
-            foreground="#000000"
+        <!-- Bottom-Right Barcode: Linear 1D for mini-mikro, QR Code for other sizes -->
+        <template v-if="page.barcode && page.barcode.trim().length > 0">
+          <LinearBarcodeRender
+            v-if="preset.id === 'mini-mikro'"
+            :value="page.barcode"
+            :scale-factor="scaleFactor"
           />
-          <span
-            class="font-sans font-normal text-black leading-none select-none"
-            :style="{
-              fontSize: `${Math.max(3, 3.6 * scaleFactor).toFixed(2)}mm`,
-              writingMode: 'vertical-rl',
-              transform: 'rotate(180deg)',
-            }"
+          <div
+            v-else
+            class="flex items-center shrink-0"
+            :style="{ gap: `${(1.2 * scaleFactor).toFixed(2)}mm` }"
           >
-            {{ page.barcode.trim() }}
-          </span>
-        </div>
+            <QrcodeVue
+              :value="page.barcode.trim()"
+              :size="qrSizePx"
+              level="M"
+              render-as="svg"
+              background="#ffffff"
+              foreground="#000000"
+            />
+            <span
+              class="font-sans font-normal text-black leading-none select-none"
+              :style="{
+                fontSize: `${Math.max(3, 3.6 * scaleFactor).toFixed(2)}mm`,
+                writingMode: 'vertical-rl',
+                transform: 'rotate(180deg)',
+              }"
+            >
+              {{ page.barcode.trim() }}
+            </span>
+          </div>
+        </template>
       </div>
     </div>
   </div>
