@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     port: 5000,
   },
   app: {
+    baseURL: '/bandrol/',
     head: {
       title: 'Bandrol Maker — Laskar & Bazzar',
       meta: [
